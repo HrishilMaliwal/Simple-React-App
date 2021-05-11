@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { isPhoneNum } from "./common";
 import Tablee from "./Tablee";
 import FormControl from "@material-ui/core/FormControl";
@@ -82,9 +82,8 @@ const UserRegistration = () => {
   };
 
   const delParent = (arr) => {
-    setArr1(arr)
-    console.log(arr1)
-  }
+    setArr1(arr);
+  };
 
   return (
     <Container component="main">
@@ -163,11 +162,7 @@ const UserRegistration = () => {
         Submit
       </Button>
       {flag1 ? (
-        <Tablee
-          data={arr1}
-          editfunc={editParent}
-          delfunc={delParent}
-        />
+        <Tablee data={arr1} editfunc={editParent} delfunc={delParent} />
       ) : (
         ""
       )}
