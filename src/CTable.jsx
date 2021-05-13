@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Button } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
-import { makeStyles } from "@material-ui/core/styles";
+import { history } from 'react-router'
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -15,6 +15,7 @@ class CTable extends Component {
     arr: this.props.data,
     arr2: [],
     searchItem: "",
+    flag1:false
   };
 
   del = (key) => {
@@ -35,6 +36,10 @@ class CTable extends Component {
     });
     this.setState({ arr2: x });
   };
+
+  redirect = () => {
+    this.history.push('/')
+  }
 
   render() {
     return (
@@ -139,6 +144,7 @@ class CTable extends Component {
             )}
           </Table>
         </TableContainer>
+        <button onClick={()=>this.redirect()}>Redirect</button>
       </>
     );
   }

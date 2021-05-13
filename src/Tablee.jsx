@@ -29,7 +29,7 @@ const Tablee = (props) => {
     const d = [...arr];
     d.splice(key, 1);
     setArr(d);
-    props.delfunc(arr)
+    props.delfunc(d)
   };
 
   const edit = (key) => {
@@ -52,16 +52,13 @@ const Tablee = (props) => {
         variant="outlined"
         label="Search"
         style={{ marginTop: "100px", left: "-84px" }}
-        onChange={(e) => search(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <TableContainer
         component={Paper}
         style={{ marginTop: "30px", width: "max", backgroundColor: "#e6f9ff" }}
       >
         <Table className={classes.table} aria-label="simple table">
-          {arr.length == 0 ? (
-            ""
-          ) : (
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
@@ -73,11 +70,10 @@ const Tablee = (props) => {
                 <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
-          )}
-          {searchItem == "" ? (
             <>
               <TableBody>
                 {arr.map((item, key) => {
+                 if ((searchItem !== "" ) && (item.first.toLowerCase().indexOf(searchItem.toLowerCase()) ) === -1) { return null }
                   return (
                     <TableRow key={key}>
                       <TableCell component="th" scope="row">
@@ -111,36 +107,6 @@ const Tablee = (props) => {
                 })}
               </TableBody>
             </>
-          ) : (
-            <>
-              <TableBody>
-                {arr2.map((item, key) => {
-                  return (
-                    <TableRow key={key}>
-                      <TableCell component="th" scope="row">
-                        {key + 1}
-                      </TableCell>
-                      <TableCell align="right">{item.first}</TableCell>
-                      <TableCell align="right">{item.last}</TableCell>
-                      <TableCell align="right">{item.email}</TableCell>
-                      <TableCell align="right">{item.pno}</TableCell>
-                      <TableCell align="right">{item.desc}</TableCell>
-                      <TableCell>
-                        <Button
-                          color="secondary"
-                          type="submit"
-                          onClick={() => del(key)}
-                          style={{ marginLeft: "20px" }}
-                        >
-                          Delete
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </>
-          )}
         </Table>
       </TableContainer>
     </>

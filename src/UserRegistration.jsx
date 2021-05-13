@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { isPhoneNum } from "./common";
+import { isPhoneNum, isNullEmpty } from "./common";
 import Tablee from "./Tablee";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -34,13 +34,20 @@ const UserRegistration = () => {
   const classes = useStyles();
 
   const vali = () => {
-    if (first == "" || last == "" || email == "" || pno == "") {
+    if (
+      isNullEmpty(first) ||
+      isNullEmpty(last) ||
+      isNullEmpty(email) ||
+      isNullEmpty(pno)
+    ) {
       alert(
         "First name, Last name, Email ID and Phone number number cannot be empty"
       );
     } else if (first.length > 10 || last.length > 10) {
       alert("First name or Last name cannot be more that 10");
     } else if (!isPhoneNum(pno)) {
+      alert("Phone number should have numbers only");
+    } else if (pno.length != 10) {
       alert("Phone number should be of length 10");
     } else if (document.getElementById("desc").value != "") {
       var Request = {
@@ -67,9 +74,20 @@ const UserRegistration = () => {
         setNum("");
         setFlag2(false);
       }
-      console.log(arr1);
     }
   };
+
+  const pnoVali = (e) => {
+    if(isPhoneNum(e.target.value))
+    {
+      setNum(e.target.value)
+    }
+    else
+    {
+      e.preventDefault()
+
+    }
+  }
 
   const editParent = (index) => {
     setIndex(index);
@@ -137,7 +155,7 @@ const UserRegistration = () => {
         autoComplete="Phone number"
         autoFocus
         value={pno}
-        onChange={(e) => setNum(e.target.value)}
+        onChange={(e)=>pnoVali(e)}
       />
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Description</InputLabel>
