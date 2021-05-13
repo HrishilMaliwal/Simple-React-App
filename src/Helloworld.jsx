@@ -16,7 +16,6 @@ const Helloworld = () => {
     if (uid == "" || pass == "") {
       alert("Username or Password cannot be empty ");
     } else if (uid.length == 6) {
-      console.log("here");
       history.push("/userregistration");
     }
   };

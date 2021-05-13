@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import { Button } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import { history } from 'react-router'
+import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -38,7 +39,7 @@ class CTable extends Component {
   };
 
   redirect = () => {
-    this.history.push('/')
+    this.props.history.push('/')
   }
 
   render() {

@@ -12,9 +12,6 @@ import TextField from "@material-ui/core/TextField";
 
 const Tablee = (props) => {
   const [arr, setArr] = useState(props.data);
-  const [arr2, setArr2] = useState([]);
-  const [flag1, setFlag1] = useState(false);
-  const [flag2, setFlag2] = useState(false);
   const [searchItem, setSearch] = useState("");
 
   const useStyles = makeStyles({
@@ -29,20 +26,11 @@ const Tablee = (props) => {
     const d = [...arr];
     d.splice(key, 1);
     setArr(d);
-    props.delfunc(d)
+    props.delfunc(d);
   };
 
   const edit = (key) => {
     props.editfunc(key);
-  };
-
-  const search = (val) => {
-    setSearch(val);
-    console.log(val);
-    const x = arr.filter((i) => {
-      return i.first == val;
-    });
-    setArr2(x);
   };
 
   return (
@@ -59,6 +47,9 @@ const Tablee = (props) => {
         style={{ marginTop: "30px", width: "max", backgroundColor: "#e6f9ff" }}
       >
         <Table className={classes.table} aria-label="simple table">
+          {arr == "" ? (
+            ""
+          ) : (
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
@@ -70,43 +61,51 @@ const Tablee = (props) => {
                 <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
-            <>
-              <TableBody>
-                {arr.map((item, key) => {
-                 if ((searchItem !== "" ) && (item.first.toLowerCase().indexOf(searchItem.toLowerCase()) ) === -1) { return null }
-                  return (
-                    <TableRow key={key}>
-                      <TableCell component="th" scope="row">
-                        {key + 1}
-                      </TableCell>
-                      <TableCell align="right">{item.first}</TableCell>
-                      <TableCell align="right">{item.last}</TableCell>
-                      <TableCell align="right">{item.email}</TableCell>
-                      <TableCell align="right">{item.pno}</TableCell>
-                      <TableCell align="right">{item.desc}</TableCell>
-                      <TableCell>
-                        <Button
-                          style={{ marginLeft: "20px" }}
-                          color="primary"
-                          type="submit"
-                          onClick={() => edit(key)}
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          color="secondary"
-                          type="submit"
-                          onClick={() => del(key)}
-                          style={{ marginLeft: "20px" }}
-                        >
-                          Delete
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </>
+          )}
+          <>
+            <TableBody>
+              {arr.map((item, key) => {
+                if (
+                  searchItem !== "" &&
+                  item.first.toLowerCase().indexOf(searchItem.toLowerCase()) ===
+                    -1
+                )
+                {
+                  return null;
+                }
+                return (
+                  <TableRow key={key}>
+                    <TableCell component="th" scope="row">
+                      {key + 1}
+                    </TableCell>
+                    <TableCell align="right">{item.first}</TableCell>
+                    <TableCell align="right">{item.last}</TableCell>
+                    <TableCell align="right">{item.email}</TableCell>
+                    <TableCell align="right">{item.pno}</TableCell>
+                    <TableCell align="right">{item.desc}</TableCell>
+                    <TableCell>
+                      <Button
+                        style={{ marginLeft: "20px" }}
+                        color="primary"
+                        type="submit"
+                        onClick={() => edit(key)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        color="secondary"
+                        type="submit"
+                        onClick={() => del(key)}
+                        style={{ marginLeft: "20px" }}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </>
         </Table>
       </TableContainer>
     </>

@@ -78,16 +78,12 @@ const UserRegistration = () => {
   };
 
   const pnoVali = (e) => {
-    if(isPhoneNum(e.target.value))
-    {
-      setNum(e.target.value)
+    if (isPhoneNum(e.target.value)) {
+      setNum(e.target.value);
+    } else {
+      e.preventDefault();
     }
-    else
-    {
-      e.preventDefault()
-
-    }
-  }
+  };
 
   const editParent = (index) => {
     setIndex(index);
@@ -155,7 +151,7 @@ const UserRegistration = () => {
         autoComplete="Phone number"
         autoFocus
         value={pno}
-        onChange={(e)=>pnoVali(e)}
+        onChange={(e) => pnoVali(e)}
       />
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Description</InputLabel>
