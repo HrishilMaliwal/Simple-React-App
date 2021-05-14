@@ -1,11 +1,11 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-const ProtectedRoute = ({Component}) => {
+const ProtectedRoute = ({children, auth}) => {
   return (
       <>
-        {true ? 
-           <Component/> : <Redirect to='/'/>
+        {auth ? 
+          children : <Redirect to='/'/>
         }
     </>
   )

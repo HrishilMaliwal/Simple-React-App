@@ -6,16 +6,16 @@ import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import './Style.css'
 
-const Helloworld = () => {
+const Helloworld = (props) => {
   const [uid, setUid] = useState("");
   const [pass, setPass] = useState("");
   const history = useHistory();
 
   const vali = () => {
-    console.log(uid.length);
     if (uid == "" || pass == "") {
       alert("Username or Password cannot be empty ");
     } else if (uid.length == 6) {
+      props.authfunc()
       history.push("/userregistration");
     }
   };
