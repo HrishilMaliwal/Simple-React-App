@@ -78,7 +78,7 @@ const UserRegistration = () => {
   };
 
   const pnoVali = (e) => {
-    if (isPhoneNum(e.target.value)) {
+    if (isPhoneNum(e.target.value) || e.target.value=="") {
       setNum(e.target.value);
     } else {
       e.preventDefault();

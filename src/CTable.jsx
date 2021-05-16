@@ -39,7 +39,7 @@ class CTable extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/')
+    this.props.history.push({pathname: '/',state: {tskId: taskId,}});
   }
 
   render() {
