@@ -4,7 +4,7 @@ import { Redirect, Route } from "react-router-dom";
 const ProtectedRoute = ({children, auth}) => {
   return (
       <>
-        {auth ? 
+        {true ? 
           children : <Redirect to='/'/>
         }
     </>

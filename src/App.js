@@ -7,6 +7,7 @@ import Image from "./Image";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React, {useState} from 'react'
 import ProtectedRoute from './ProtectedRoute'
+import xccl from "./Xccl";
 
 function App() {
   
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/userregistration" component={UserRegistration}/>  
           <Route exact path="/userinput" component={UserInput} />
           <Route exact path="/image" component={Image} />
+          <Route exact path="/excel" component={xccl} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

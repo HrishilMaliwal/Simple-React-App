@@ -39,7 +39,7 @@ class CTable extends Component {
   };
 
   redirect = () => {
-    this.props.history.push({pathname: '/',state: {tskId: taskId,}});
+    this.props.history.push({pathname: '/',state: {first: "first"}});
   }
 
   render() {
@@ -151,4 +151,4 @@ class CTable extends Component {
   }
 }
 
-export default CTable;
+export default withRouter(CTable);
