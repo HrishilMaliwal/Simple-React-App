@@ -9,12 +9,7 @@ const Image = () => {
     // w = w + 0.2*w
     // size.style.width = String(w) + 'px'
     // console.log(this.props.state.first)
-    for (var i = 0; i < 5; i++) {
-      console.log(i)
-      setTimeout(function () {
-        console.log(i);
-      }, i * 1000);
-    }
+
   };
 
   return (
